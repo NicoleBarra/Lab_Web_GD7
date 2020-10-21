@@ -71,7 +71,7 @@
   vertical-align:middle;
 }
 
-#drag-elements {
+#Salida-de-Planta {
   display: block;
   background-color: #dfdfdf;
   border-radius: 5px;
@@ -80,7 +80,43 @@
   padding: 2em;
 }
 
-#drag-elements > div {
+#En-local-delivery-center {
+  display: block;
+  background-color: #61dafb;
+  border-radius: 5px;
+  min-height: 50px;
+  margin: 0 auto;
+  padding: 2em;
+}
+
+#En-proceso-de-entrega {
+  display: block;
+  background-color: #7d61fb;
+  border-radius: 5px;
+  min-height: 50px;
+  margin: 0 auto;
+  padding: 2em;
+}
+
+#Entregado {
+  display: block;
+  background-color: #cdfb61;
+  border-radius: 5px;
+  min-height: 50px;
+  margin: 0 auto;
+  padding: 2em;
+}
+#Fallida {
+  display: block;
+  background-color: #e71430;
+  border-radius: 5px;
+  min-height: 50px;
+  margin: 0 auto;
+  padding: 2em;
+}
+
+
+#Salida-de-Planta > div, #En-local-delivery-center > div,#En-proceso-de-entrega > div,#Entregado > div,#Fallida > div {
   text-align: center;
   float: left;
   padding: 1em;
@@ -92,7 +128,7 @@
   transition: all .5s ease;
 }
 
-#drag-elements > div:active {
+#Salida-de-Planta > div:active,#En-local-delivery-center > div:active,#En-proceso-de-entrega > div:active,#Entregado > div:active,#Fallida > div:active{
   -webkit-animation: wiggle 0.3s 0s infinite ease-in;
   animation: wiggle 0.3s 0s infinite ease-in;
   opacity: .6;
