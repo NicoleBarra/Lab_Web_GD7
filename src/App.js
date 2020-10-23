@@ -2,7 +2,6 @@
 import React, {useState, useEffect} from 'react';
 import Create from './components/todo/Create';
 import Lists from './components/lists/Lists';
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import axios from "axios";
