@@ -4,7 +4,7 @@ exports.store = (req, res) => {
   let pedido = {};
   console.log(req);
   pedido.nombre = req.body.nombre;
-  pedido.estado = "Salida-de-Planta";
+  pedido.estado = 1;
   Pedido.create(pedido).then((id) => {
     console.log('Pedido created with id: ', id);
     if (req.xhr || req.headers.accept.indexOf('json') > -1) {
