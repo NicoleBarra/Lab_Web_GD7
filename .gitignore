@@ -15,15 +15,18 @@
 # misc
 .DS_Store
 .env.local
+.env
 .env.development.local
 .env.test.local
 .env.production.local
 
+/src/.env
 /src/.env.local
 /src/.env.development.local
 /src/.env.test.local
 /src/.production.local
 
+/backend/.env
 /backend/.env.local
 /backend/.env.development.local
 /backend/.env.test.local
