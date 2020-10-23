@@ -24,9 +24,22 @@ const Lists= ({pedidos, updateEstado, updatePedido}) => {
 
           ]
           
-          dragula(containers, {
+          var drake = dragula(containers, {
             revertOnSpill: true
-          }).on('drop', function(el, target,source,sibling) {
+          });
+
+          
+          
+          drake.on('drop', function(el, target,source,sibling) {
+
+            if (target.id === 'Salida-de-Planta'){
+              drake.cancel();
+            }
+
+            if (source.id === 'Entregado'){
+              drake.cancel();
+            }
+
             if ($('En-local-delivery-center').children.length > 0) {
               $('display').innerHTML = $('En-local-delivery-center').innerHTML;
             } else {
@@ -39,12 +52,6 @@ const Lists= ({pedidos, updateEstado, updatePedido}) => {
 
             updateEstado(elId,sourceId,targetId);
             updatePedido(elId,targetId);
-
-
-
-            
-
-            
           });
     },[])
 

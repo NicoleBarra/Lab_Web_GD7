@@ -6,12 +6,14 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import axios from "axios";
-var dragula = require('react-dragula');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 
 function App() {
 
-
+  var dbHost = process.env.BACKEND_PORT || 8000
   const [pedidos, setPedidos] = useState([]);
 
 
@@ -23,7 +25,7 @@ function App() {
   
 
   const fetchPedidos = async () => {
-    await axios("http://localhost:8000/").then((res) => {
+    await axios(`http://localhost:${dbHost}/`).then((res) => {
       console.log(res.data);
       setPedidos(res.data);
     });
@@ -33,7 +35,7 @@ function App() {
   const addPedido = async (nombre) => {
     let cPedidos = Object.assign([], pedidos);
 
-    await axios.post("http://localhost:8000/pedido/create", {
+    await axios.post(`http://localhost:${dbHost}/pedido/create`, {
         nombre : nombre
       }
     )
@@ -57,7 +59,7 @@ function App() {
 
   const updateEstado = async (elId,sourceId,targetId) => {
     await axios
-      .post(`http://localhost:8000/cambioestado/create`, { 
+      .post(`http://localhost:${dbHost}/cambioestado/create`, { 
         pedido: elId,
         estadoAnterior: sourceId,
         estadoPosterior: targetId
@@ -72,7 +74,7 @@ function App() {
 
   const updatePedido = async (elId,targetId) => {
     await axios
-      .post(`http://localhost:8000/pedido/update`, { 
+      .post(`http://localhost:${dbHost}/pedido/update`, { 
         id: elId,
         nuevoEstado:targetId 
       })

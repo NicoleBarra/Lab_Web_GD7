@@ -19,6 +19,16 @@
 .env.test.local
 .env.production.local
 
+/src/.env.local
+/src/.env.development.local
+/src/.env.test.local
+/src/.production.local
+
+/backend/.env.local
+/backend/.env.development.local
+/backend/.env.test.local
+/backend/.production.local
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
