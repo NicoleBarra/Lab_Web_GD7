@@ -1,5 +1,35 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Instructions to Run the Project
+
+Access the backend folder
+
+`cd backend`
+
+Change your .env to desired configurations
+
+Start your backend database
+
+`node server.js`
+
+Go back to main
+
+`cd ..`
+
+Go to src
+
+`cd src`
+
+Configure .env to make the host same as backend host
+
+Go back to main
+
+`cd ..`
+
+Start the project 
+
+`npm start`
+
 ## Available Scripts
 
 In the project directory, you can run:
