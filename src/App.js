@@ -2,24 +2,29 @@
 import React, {useState, useEffect} from 'react';
 import Create from './components/todo/Create';
 import Lists from './components/lists/Lists';
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import axios from "axios";
-var dragula = require('react-dragula');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 
 function App() {
+
+  var dbHost = process.env.BACKEND_PORT || 8000
+  const [pedidos, setPedidos] = useState([]);
+
 
   useEffect(() => {
     fetchPedidos();
     console.log("FETCH");
   }, []);
 
-  const [pedidos, setPedidos] = useState([]);
+  
 
   const fetchPedidos = async () => {
-    await axios("http://localhost:8000/").then((res) => {
+    await axios(`http://localhost:${dbHost}/`).then((res) => {
       console.log(res.data);
       setPedidos(res.data);
     });
@@ -29,7 +34,7 @@ function App() {
   const addPedido = async (nombre) => {
     let cPedidos = Object.assign([], pedidos);
 
-    await axios.post("http://localhost:8000/pedido/create", {
+    await axios.post(`http://localhost:${dbHost}/pedido/create`, {
         nombre : nombre
       }
     )
@@ -51,6 +56,36 @@ function App() {
     console.log(cPedidos);
   }
 
+  const updateEstado = async (elId,sourceId,targetId) => {
+    await axios
+      .post(`http://localhost:${dbHost}/cambioestado/create`, { 
+        pedido: elId,
+        estadoAnterior: sourceId,
+        estadoPosterior: targetId
+      })
+      .then((res) => {
+        console.log("Cambio Estado creado");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const updatePedido = async (elId,targetId) => {
+    await axios
+      .post(`http://localhost:${dbHost}/pedido/update`, { 
+        id: elId,
+        nuevoEstado:targetId 
+      })
+      .then((res) => {
+        console.log("Pedido actualizado");
+        console.log(targetId);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
 
 
 
@@ -62,7 +97,7 @@ function App() {
         <Route exact path="/">
             <h1>Pedidos</h1>
             <Create addPedido={addPedido}/>
-            <Lists/>
+            <Lists pedidos={pedidos} updateEstado={updateEstado} updatePedido={updatePedido}/>
       
         </Route>
         </Switch>

@@ -7,7 +7,7 @@ exports.store = (req, res) => {
   cambioestado.estadoPosterior = req.body.estadoPosterior;
 
   CambioEstado.create(cambioestado).then((id) => {
-    console.log('CambioEstado created with id: ', id);
+    
     if (req.xhr || req.headers.accept.indexOf('json') > -1) {
       CambioEstado.find(id).then((cambioestado) => res.json(cambioestado));
     } else {
