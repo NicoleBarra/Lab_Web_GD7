@@ -11,12 +11,16 @@ var dragula = require('react-dragula');
 
 function App() {
 
+
+  const [pedidos, setPedidos] = useState([]);
+
+
   useEffect(() => {
     fetchPedidos();
     console.log("FETCH");
   }, []);
 
-  const [pedidos, setPedidos] = useState([]);
+  
 
   const fetchPedidos = async () => {
     await axios("http://localhost:8000/").then((res) => {
@@ -51,6 +55,36 @@ function App() {
     console.log(cPedidos);
   }
 
+  const updateEstado = async (elId,sourceId,targetId) => {
+    await axios
+      .post(`http://localhost:8000/cambioestado/create`, { 
+        pedido: elId,
+        estadoAnterior: sourceId,
+        estadoPosterior: targetId
+      })
+      .then((res) => {
+        console.log("Cambio Estado creado");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const updatePedido = async (elId,targetId) => {
+    await axios
+      .post(`http://localhost:8000/pedido/update`, { 
+        id: elId,
+        nuevoEstado:targetId 
+      })
+      .then((res) => {
+        console.log("Pedido actualizado");
+        console.log(targetId);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
 
 
 
@@ -62,7 +96,7 @@ function App() {
         <Route exact path="/">
             <h1>Pedidos</h1>
             <Create addPedido={addPedido}/>
-            <Lists/>
+            <Lists pedidos={pedidos} updateEstado={updateEstado} updatePedido={updatePedido}/>
       
         </Route>
         </Switch>

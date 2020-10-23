@@ -4,7 +4,7 @@ exports.store = (req, res) => {
   let pedido = {};
   console.log(req);
   pedido.nombre = req.body.nombre;
-  pedido.estado = "Salida de planta";
+  pedido.estado = "Salida-de-Planta";
   Pedido.create(pedido).then((id) => {
     console.log('Pedido created with id: ', id);
     if (req.xhr || req.headers.accept.indexOf('json') > -1) {
@@ -36,16 +36,18 @@ exports.done = (req, res) => {
 
 //check
 exports.update = (req, res) => {
+  console.log(req);
   let pedido = {};
   pedidoId = req.body.id;
   pedido.id = req.body.id
   let updatePedido = {
-    estado: req.body.nuevoestado
+    estado: req.body.nuevoEstado
   }
   console.log('Pedido created with id: ', pedidoId);
   Pedido.update(pedidoId, updatePedido).then((id) => {
-    console.log('Pedido created with id: ', pedidoId);
+    
     if (req.xhr || req.headers.accept.indexOf('json') > -1) {
+      console.log('Pedido updated with id: ', pedidoId);
       Pedido.find(pedidoId).then((pedido) => res.json(pedido));
     } else {
       res.redirect('/');
