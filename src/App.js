@@ -95,7 +95,7 @@ function App() {
     <div>
         <Switch>
         <Route exact path="/">
-            <h1>Pedidos</h1>
+            
             <Create addPedido={addPedido}/>
             <Lists pedidos={pedidos} updateEstado={updateEstado} updatePedido={updatePedido}/>
       

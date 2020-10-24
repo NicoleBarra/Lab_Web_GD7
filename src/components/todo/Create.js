@@ -17,7 +17,8 @@ const Create = ({addPedido}) => {
 
 
   return (
-    <div>
+    <div class="container">
+      <h1>Pedidos</h1>
       <label htmlFor="create-form"></label>
       <input 
         type="text" 

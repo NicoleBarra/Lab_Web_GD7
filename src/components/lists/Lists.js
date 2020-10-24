@@ -8,9 +8,9 @@ const Lists= ({pedidos, updateEstado, updatePedido}) => {
 
 
     useEffect(() =>{
-      if ($('2').children.length > 0) {
+     /* if ($('2').children.length > 0) {
         $('display').innerHTML = $('En-local-delivery-center').innerHTML;
-      }
+      }*/
         function $(id) {
             return document.getElementById(id);
           }
@@ -32,11 +32,11 @@ const Lists= ({pedidos, updateEstado, updatePedido}) => {
           
           drake.on('drop', function(el, target,source,sibling) {
 
-            if ($('2').children.length > 0) {
+           /* if ($('2').children.length > 0) {
               $('display').innerHTML = $('2').innerHTML;
             } else {
               $('display').innerHTML = "Display";
-            }
+            }*/
 
             if (target.id === '1' || source.id === '4'){
               drake.cancel();
@@ -54,8 +54,7 @@ const Lists= ({pedidos, updateEstado, updatePedido}) => {
 
     return(
 <div class="container">
-  <h1>Drag and Drop</h1>
-  <p>Trying out <code>dragula.js</code>. Source <a href="https://github.com/bevacqua/dragula">here</a>.</p>
+  
   <div class="left">
     <p>Salida-de-Planta</p>
     <div id='1' class="Salida-de-Planta">
@@ -89,32 +88,34 @@ const Lists= ({pedidos, updateEstado, updatePedido}) => {
         ))
       }
     </div>
-
-    <p>Entregado</p>
-    <div id='4' class="Entregado">
-    {
-        pedidos
-        .filter(p => p.estado === 4)
-        .map((p,i)=> (
-        <div key={p.id} id={p.id}>#{p.id} {p.nombre}</div>
-        ))
-      }
-    </div>
-
-      <p>Fallida</p>
-    <div id='5' class="Fallida">
-    {
-        pedidos
-        .filter(p => p.estado === 5)
-        .map((p,i)=> (
-        <div key={p.id} id={p.id}>#{p.id} {p.nombre}</div>
-        ))
-      }
-    </div>
   </div>
   <div class="right">
-    <div id="display">Display</div>
+    <p>Completado</p>
+    <div class="one">
+      <p>Entregado</p>
+      <div id='4' class="Entregado">
+      {
+          pedidos
+          .filter(p => p.estado === 4)
+          .map((p,i)=> (
+          <div key={p.id} id={p.id}>#{p.id} {p.nombre}</div>
+          ))
+        }
+      </div>
+
+        <p>Fallida</p>
+      <div id='5' class="Fallida">
+      {
+          pedidos
+          .filter(p => p.estado === 5)
+          .map((p,i)=> (
+          <div key={p.id} id={p.id}>#{p.id} {p.nombre}</div>
+          ))
+        }
+      </div>
+    </div>
   </div>
+  
 </div>
     )}
 
